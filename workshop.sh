@@ -36,10 +36,12 @@ tac
 #
 # vi workshop.sh   ## <- You Are Here
 #
+#export UPK_WIFI_SSID="c:::::||[=========>"
+#export UPK_WIFI_KEY="it'sdangeroustogoalone"
 export UPK_WIFI_SSID="MCH2022-open"
 export UPK_WIFI_KEY=""
-# export UPK_KITE_NAME=""
-# export UPK_KITE_SECRET=""
+export UPK_KITE_NAME="esp32-ino.pagekite.me"
+export UPK_KITE_SECRET="2xexe2eb646a6bfz32aa8dbe6ee2c99e"
 #
 ## In another window: Run the workshop script!
 #
@@ -81,7 +83,7 @@ set -e -x
 # brew install cmake ninja dfu-util picocom       #+ python3 if python is old
 # sudo port install cmake ninja dfu-util picocom  #+ python38 if python is old
 #
-exit 0  # Comment out the code above, and delete this line to proceed.
+# exit 0  # Comment out the code above, and delete this line to proceed.
 
 
 ##############################################################################
@@ -102,15 +104,7 @@ exit 0  # Comment out the code above, and delete this line to proceed.
 ## Edit this line, if necessary:
 export ESP32TTY=/dev/ttyUSB0     # Don't comment this out, it's used later!
 
-
-
-
-
-
-
-
-
-exit 0  # Comment out the code above, and delete this to proceed.
+# exit 0  # Comment out the code above, and delete this to proceed.
 
 
 ##############################################################################
@@ -118,24 +112,23 @@ exit 0  # Comment out the code above, and delete this to proceed.
 #
 ## The ESP32 SDK: version 4.4, so we can rebuild MicroPython later on
 #
-# cd $HACKDIR
-# git clone -b v4.4 --recursive https://github.com/espressif/esp-idf.git
-# cd esp-idf
-# ./install.sh
+#cd $HACKDIR
+#git clone -b v4.4 --recursive https://github.com/espressif/esp-idf.git
+#cd esp-idf
+#./install.sh
 #
 ## MicroPython binaries!
 #
-# mkdir -p $HACKDIR/firmwares
-# cd $HACKDIR/firmwares
-# wget https://micropython.org/resources/firmware/esp32spiram-20220618-v1.19.1.bin
+#mkdir -p $HACKDIR/firmwares
+#cd $HACKDIR/firmwares
+#wget https://micropython.org/resources/firmware/esp32spiram-20220618-v1.19.1.bin
 #
 ## The upagekite source
 #
-# cd $HACKDIR
-# git clone https://github.com/pagekite/upagekite
+#cd $HACKDIR
+#git clone https://github.com/pagekite/upagekite
 
-
-exit 0  # Comment out the code above, and delete this to proceed.
+#exit 0  # Comment out the code above, and delete this to proceed.
 
 
 ##############################################################################
@@ -184,9 +177,9 @@ exit 0  # Comment out the code above, and delete this to proceed.
 #
 # pydoc3 upagekite.esp32_install
 #
-# python3 -m upagekite.esp32_install \
-#   |picocom --lower-dtr --lower-rts -b115200 $ESP32TTY
-# exit 0
+python3 -m upagekite.esp32_install \
+  |picocom --lower-dtr --lower-rts -b115200 $ESP32TTY
+exit 0
 #
 ## Now we alternate between steps 5 and 6 to create our app!
 
@@ -211,17 +204,18 @@ exit 0  # Comment out the code above, and delete this to proceed.
 # source $HACKDIR/esp-idf/export.sh >/dev/null 2>&1
 # esptool.py --port $ESP32TTY --baud 460800 write_flash -z 0x1000 \
 #   $HACKDIR/firmwares/micropython-esp32-cam-upagekite-20220722.bin
-#
+# 
 # rm -f /tmp/upk-change-marker.*  # Force esp32_install to re-up everything
-#
-## Connect to the chip, does it look different?  CTRL+X exits.
-#
+# #
+# ## Connect to the chip, does it look different?  CTRL+X exits.
+# #
 # sleep 2
 # exec picocom --lower-dtr --lower-rts -b115200 $ESP32TTY
 #
 ## Now go back to steps 5/6: but add --nopk to esp32_install!
 
 
+exit 0
 
 
 ### N. Play around!

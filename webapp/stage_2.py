@@ -4,7 +4,7 @@ from upagekite.httpd import HTTPD
 # from demo_routes import setup_routes
 # from demo_security import setup_security
 # from demo_websocket import setup_websocket
-# from demo_camera import setup_camera
+from demo_camera import setup_camera
 
 
 # This is where upagekite.esp32_install puts things
@@ -81,7 +81,7 @@ if __name__ == '__main__':
     # setup_routes(global_app_env)
     # setup_security(global_app_env)
     # setup_websocket(global_app_env)
-    # setup_camera(global_app_env)
+    setup_camera(global_app_env)
 
     UPageKiteSettings.debug('global_app_env=%s' % global_app_env)
     print('=2= Starting PageKite event loop. Press CTRL+C to abort.')
